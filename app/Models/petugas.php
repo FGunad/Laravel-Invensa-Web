@@ -17,6 +17,8 @@ class petugas extends Authenticatable
      *
      * @var array
      */
+    protected $primaryKey = 'id_petugas';
+
     protected $fillable = [
         'nama_petugas',
         'username',
@@ -24,7 +26,7 @@ class petugas extends Authenticatable
         'api_token',
         'id_level',
     ];
-  
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -34,7 +36,7 @@ class petugas extends Authenticatable
         'password',
         'remember_token',
     ];
-  
+
     /**
      * The attributes that should be cast to native types.
      *

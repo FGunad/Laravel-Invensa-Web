@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PegawaiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,8 +21,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('petugas/login', [PetugasController::class, 'login'])->name('Login');
-Route::get('petugas', [PetugasController::class, 'index'])->middleware('auth:api')->name('Get Data Petugas');
-Route::post('petugas', [PetugasController::class, 'store'])->name('Insert Data Petugas');
-Route::put('petugas/{petugas_id}',[PetugasController::class, 'update'])->name('Update Data Petugas');
-Route::delete('petugas/{petugas_id}',[PetugasController::class, 'destroy'])->name('Delete Petugas');
+Route::get('petugas', [PetugasController::class, 'index'])->middleware('auth:api')->name('Ambil Data Petugas');
+Route::post('petugas', [PetugasController::class, 'store'])->middleware('auth:api')->name('Insert Data Petugas');
+Route::put('petugas/{petugas_id}',[PetugasController::class, 'update'])->middleware('auth:api')->name('Update Data Petugas');
+Route::delete('petugas/{petugas_id}',[PetugasController::class, 'destroy'])->middleware('auth:api')->name('Delete Petugas');
 Route::post('petugas/search',[PetugasController::class, 'search'])->middleware('auth:api')->name('search Petugas');
+
+Route::get('pegawai', [PegawaiController::class, 'index'])->middleware('auth:api')->name('Ambil Data Pegawai');
+Route::post('pegawai', [PegawaiController::class, 'store'])->middleware('auth:api')->name('Insert Data Pegawai');
+Route::put('pegawai/{pegawai_id}',[PegawaiController::class, 'update'])->middleware('auth:api')->name('Update Data Pegawai');
+Route::delete('pegawai/{pegawai_id}',[PegawaiController::class, 'destroy'])->middleware('auth:api')->name('Delete Pegawai');
+Route::post('pegawai/search',[PegawaiController::class, 'search'])->middleware('auth:api')->name('search Pegawai');

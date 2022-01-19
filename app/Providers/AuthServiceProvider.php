@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('id_level', function($user, ...$id_level){
+            return in_array($user->id_level, $id_level);
+        });
     }
 }

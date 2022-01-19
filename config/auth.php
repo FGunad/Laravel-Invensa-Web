@@ -40,11 +40,15 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
+        ],
+        'petugas' => [
+            'driver' => 'session',
+            'provider' => 'petugas',
         ],
     ],
 
@@ -67,6 +71,10 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\petugas::class,
+        ],
+        'petugas' => [
             'driver' => 'eloquent',
             'model' => App\Models\petugas::class,
         ],

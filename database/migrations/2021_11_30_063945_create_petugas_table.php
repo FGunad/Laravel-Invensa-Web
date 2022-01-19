@@ -14,15 +14,16 @@ class CreatePetugasTable extends Migration
     public function up()
     {
         Schema::create('petugas', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_petugas');
             $table->string('nama_petugas', 100);
-            $table->string('username', 50);
+            $table->string('username', 50)->unique();
             $table->string('password', 128);
             $table->string('api_token')->unique()
                                         ->nullable()
                                         ->default(null);
             $table->unsignedBigInteger('id_level');
             $table->foreign('id_level')->references('id_level')->on('level');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

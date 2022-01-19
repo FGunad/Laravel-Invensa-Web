@@ -26,7 +26,7 @@ class CreateInventarisTable extends Migration
             $table->unsignedBigInteger('id_petugas');
             $table->foreign('id_jenis')->references('id_jenis')->on('jenis');
             $table->foreign('id_ruang')->references('id_ruang')->on('ruang');
-            $table->foreign('id_petugas')->references('id')->on('petugas');
+            $table->foreign('id_petugas')->references('id_petugas')->on('petugas');
             $table->timestamps();
         });
     }

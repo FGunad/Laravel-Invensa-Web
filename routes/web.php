@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\LoginPetugasController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.main');
+    return view('welcome');
+});
+
+
+Route::group([
+    'prefix'=>config('invensa.prefix'),
+],function () {
+    Route::get('login',[LoginPetugasController::class, 'formLogin'])->name('petugas.login');
+    Route::post('login',[LoginPetugasController::class, 'login']);
+
+    Route::middleware(['auth:petugas'])->group(function () {
+    Route::post('logout',[LoginPetugasController::class, 'logout'])->name('petugas.logout');
+    Route::view('/', 'dashboard')->name('petugas.dashboard');
+
+    Route::resource('petugas', 'PetugasController');
+
+    });
+
 });
